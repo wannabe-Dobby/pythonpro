@@ -1,17 +1,17 @@
-print("\t\tWelcome to 'Guess My Number'!\n\
-        I'm thinking of a number between 1 and 100.\n\
-        Try to guess it in as few attempts as possible.\n")
+print("\tWelcome to 'Guess My Number'!\n\n\
+I'm thinking of a number between 1 and 100.\n\
+Try to guess it in as few attempts as possible.\n")
 
 import random
 
 Num = random.randrange(1, 100)
-vlaue = random.randrange(1, 100)
+value = random.randrange(1, 100)
 
-while value == "Num"
+while value == "Num":
 
-vlaue = random.randrange(1, 100)
+  print("Take a guess : ", value)
 
-print("Take a guess : ", value)
+  vlaue = random.randrange(1, 100)
 
   if value > Num:
     print("Lower...")
@@ -20,4 +20,4 @@ print("Take a guess : ", value)
   else:
     print("You guessed it! The number was 15\nAnd it only took you", cnt, "tries!")
 
-  cnt++;
+  cnt = cnt + 1
