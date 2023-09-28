@@ -26,8 +26,6 @@ while True:
         result2 = "success"
     else:
         result2 = "fail"
-                                                                                                
-    print("hero(HP:", Hero, ", attack:", Hero_att, ")", result1, "<->", "monster(HP:", Mon, ", attack:", Mon_att, ")", result2)
                                                                                                         
     # 히어로와 몬스터 중 하나라도 0이하의 수가 나오면 멈춤
     if Hero <= 0 or Mon <= 0:
@@ -46,6 +44,7 @@ while True:
 
     cnt = cnt + 1
 
+    print("hero(HP:", Hero, ", attack:", Hero_att, ")", result1, "<->", "monster(HP:", Mon, ", attack:", Mon_att, ")", result2)
 print("------------------------------------")
 
 print("Total phase:", cnt, ",")   
