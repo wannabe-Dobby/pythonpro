@@ -14,7 +14,7 @@ for i in word1_list:
     print(i, end='')
 print("")
 
-Guess = input(("Your guess: "))
+guess = input(("Your guess: "))
 if guess == word1:
   print("Correct!")
 else:
