@@ -19,8 +19,3 @@ if guess == word1:
   print("Correct!")
 else:
   print("Sorry, that's not correct. The word was:", word1)
-
-
-
-#for letter in word1:
-#  print(letter)
