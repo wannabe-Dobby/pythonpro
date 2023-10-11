@@ -2,9 +2,9 @@ print("\tHigh Scores Keeper\n\n\t0 - Quit\n\t1 - List Scores\n\t2 - Add a Score\
 
 scores = {("Moe", 1000), ("Larry", 1500)}
 
-C = int(input("Choice:"))
+C = int(input("Choice: "))
 
-while C > 0 and C < 2:
+while C >= 0 and C < 2:
 
   if C == 0:
     break
