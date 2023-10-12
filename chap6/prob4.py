@@ -8,7 +8,7 @@ words = ["bear", "deer", "dolphin", "goat", "hamster", "koala", "mouse", "panda"
 random_word = random.choice(words)
 
 for x in random_word:
-    print("_", end = " ")
+      print("_", end = " ")
 
 # wrong 갯수에 따른 hangman 모양
 def print_hangman(wrong):
@@ -39,7 +39,7 @@ def print_hangman(wrong):
     elif (wrong == 4):
         print("\n +--+")
         print(" O   |")
-        print("/|\  |")                               
+        print("/|\  |")
         print("     |")
         print("   ===")
     elif (wrong == 5):
@@ -66,7 +66,7 @@ def print_word(guessed_letters):
             right_letters += 1
         else:
             print(" ", end = " ")
-            counter += 1
+        counter += 1
     return right_letters
 
 # 랜덤 단어의 자릿수 표시 (overline으로)
@@ -92,7 +92,7 @@ while (amount_of_times_wrong != 6 and current_letters_right != length_of_word_to
     if (random_word[current_guess_index] == letter_Guessed):
         print("\nYes", letter_Guessed, "is in the word!")
         print_hangman(amount_of_times_wrong)
-        
+
         # 단어 출력하기
         current_guess_index += 1
         current_letters_guessed.append(letter_Guessed)
