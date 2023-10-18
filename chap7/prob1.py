@@ -1,0 +1,15 @@
+def display_instruct():
+    print("Here are the insturctions to the Tic-Tac_Toe game:\n")
+    print("\tWelcome to the greatest intellectual challenge of all time: Tic-Tac_Toe.")
+    print("\tThis will be a showdown between your human brain and my silicon processor.\n")
+    print("\tYou will make yout move known by entering a number, 0 - 8. The number will be correspond to the board position as illustrated:")
+    print("\t\t\t\t\t0 | 1 | 2")
+    print("\t\t\t\t\t---------")
+    print("\t\t\t\t\t3 | 4 | 5")
+    print("\t\t\t\t\t---------")
+    print("\t\t\t\t\t6 | 7 | 8")
+    print("\tPrepare youself, human, The ultimate battle is about to begin.\n")
+    print("Here they are again:")
+    print("You probably understand the game by now.")
+
+display_instruct()
