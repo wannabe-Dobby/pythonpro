@@ -11,5 +11,6 @@ text_file.writelines(lines)
 
 print("Read the newly created file.")
 text_file = open("write_it.txt", "r")
-for line in text_file:
-    print(line)
+whole_thing = text_file.read()
+print(whole_thing)
+text_file.close()

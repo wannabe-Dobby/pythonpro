@@ -12,6 +12,7 @@ text_file = open("read_it.txt", "r")
 print("\nReading the entire file at once.")
 whole_thing = text_file.read()
 print(whole_thing)
+text_file.close()
 
 text_file = open("read_it.txt", "r")
 print("\nRead the characters from a line.")
