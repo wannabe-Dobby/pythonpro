@@ -34,7 +34,10 @@ pickles["shape"] = ["whole", "spear", "chip"]
 pickles["brand"] = ["Claussen", "Heinz", "Vlassic"]
 pickles.sync()
 
-for key in pickles.keys():
+custom_order = ["variety", "shape", "brand"]
+sorted_keys = sorted(pickles.keys(), key=lambda x: custom_order.index(x))
+
+for key in sorted_keys:
     print(key, "-", pickles[key])
 
 pickle_file.close()
