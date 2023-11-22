@@ -31,6 +31,16 @@ class Critter:
     def getMood(self):
         self.__mood -= 1
 
+class Food:
+
+
+    def __init__(self, name, level):
+        self.name = name
+        self.level = level
+        # name -> feed, meat, berry
+    def getLevel(self):
+
+    def setCritterLevel(critter)
 
 def instruction():
     print("\n\tCritter Caretaker\n")
@@ -52,6 +62,7 @@ while True:
         crit.Talk()
     
     if num == 2:
+        new_num = input("Which food do you")
         crit.Feed()
     
     if num == 3:
