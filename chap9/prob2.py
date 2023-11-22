@@ -15,15 +15,17 @@ class Critter:
             mood_word = "happy"
 
         print("I am", self.name, "and I feel", mood_word, "now")
+        print(self.__mood) # del
 
-    def Feed(self):
+    def Feed(self, name):
         print("Yeah!")
-        Critter.setMood(self, 3)
-    
+        Critter.setMood(self, Food.getLevel(self, name))
+        print(self.__mood) # del
+
     def Play(self):
         print("Wheee!")
         Critter.setMood(self, 2)
-    
+        print(self.__mood) # del
 
     def setMood(self, level):
         self.__mood += level
@@ -32,16 +34,21 @@ class Critter:
         self.__mood -= 1
 
 class Food:
-
-
+    """Three kinds of food"""
     def __init__(self, name, level):
         self.name = name
         self.level = level
-        # name -> feed, meat, berry
-    def getLevel(self):
+        self.__mood = 0
+        self.__mood += Food.getLevel(self, name)
 
-    def setCritterLevel(critter)
-
+    def getLevel(self, name):
+        if name == "feed":
+            return 5
+        if name == "meat":
+            return 3
+        if name == "berry":
+            return 1
+        
 def instruction():
     print("\n\tCritter Caretaker\n")
     print("\t0 - Quit")
@@ -62,8 +69,21 @@ while True:
         crit.Talk()
     
     if num == 2:
-        new_num = input("Which food do you")
-        crit.Feed()
-    
+        print("Which food do you want to eat?")
+        print("\n\t1 - feed")
+        print("\t2 - meat")
+        print("\t3 - berry\n")
+        eat = int(input())
+        
+        if eat == 1:
+            feed = Food("feed", 5)
+            crit.Feed(feed)
+        if eat == 2:
+            meat = Food("meat", 3)
+            crit.Feed(meat)
+        if eat == 3:
+            berry = Food("berry", 1)
+            crit.Feed(berry)
+
     if num == 3:
         crit.Play()
