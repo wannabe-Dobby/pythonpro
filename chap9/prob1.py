@@ -15,16 +15,18 @@ class Critter:
             mood_word = "happy"
 
         print("I am", self.name, "and I feel", mood_word, "now")
+        print("mood : ", self.__mood)        
 
     def Feed(self):
         print("Yeah!")
-        Critter.setMood(self, 3)
+        self.setMood(3)
+        print("mood : ", self.__mood)
     
     def Play(self):
         print("Wheee!")
-        Critter.setMood(self, 2)
+        self.setMood(2)
+        print("mood : ", self.__mood)
     
-
     def setMood(self, level):
         self.__mood += level
         

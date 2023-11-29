@@ -15,18 +15,18 @@ class Critter:
             mood_word = "happy"
 
         print("I am", self.name, "and I feel", mood_word, "now")
-        print(self.__mood) # del
-
-    def Feed(self, name):
+        print("mood : ", self.__mood)
+        
+    def Feed(self, mood_increase):
         print("Yeah!")
-        Critter.setMood(self, Food.getLevel(self, name))
-        print(self.__mood) # del
-
+        self.setMood(mood_increase)
+        print("mood : ", self.__mood)
+    
     def Play(self):
         print("Wheee!")
-        Critter.setMood(self, 2)
-        print(self.__mood) # del
-
+        self.setMood(2)
+        print("mood : ", self.__mood)
+    
     def setMood(self, level):
         self.__mood += level
         
@@ -34,33 +34,34 @@ class Critter:
         self.__mood -= 1
 
 class Food:
-    """Three kinds of food"""
     def __init__(self, name, level):
         self.name = name
         self.level = level
-        self.__mood = 0
-        self.__mood += Food.getLevel(self, name)
-
-    def getLevel(self, name):
-        if name == "feed":
-            return 5
-        if name == "meat":
-            return 3
-        if name == "berry":
-            return 1
+    
+    def getLevel(self):
+        return self.level
+    
+    def setCriterLevel(self, critter):
+        critter.setLevel(self.level)
         
-def instruction():
+def instruction(food_menu):
     print("\n\tCritter Caretaker\n")
     print("\t0 - Quit")
     print("\t1 - Listen to yout critter")
     print("\t2 - Feed yout critter")
     print("\t3 - Play with yout critter\n")
-
+    
 critter_name = input("What do you want to name your critter?: ")
 crit = Critter(critter_name, 0)
 
+food_menu = [
+    Food("Feed", 5),
+    Food("Meat", 3),
+    Food("Berry", 1)
+]
+
 while True:
-    instruction()
+    instruction(food_menu)
     num = int(input("Choice: "))
     if num == 0:
         break
@@ -69,21 +70,18 @@ while True:
         crit.Talk()
     
     if num == 2:
-        print("Which food do you want to eat?")
-        print("\n\t1 - feed")
-        print("\t2 - meat")
-        print("\t3 - berry\n")
-        eat = int(input())
-        
-        if eat == 1:
-            feed = Food("feed", 5)
-            crit.Feed(feed)
-        if eat == 2:
-            meat = Food("meat", 3)
-            crit.Feed(meat)
-        if eat == 3:
-            berry = Food("berry", 1)
-            crit.Feed(berry)
+        print("Select food:")
+        print("1 - Feed")
+        print("2 - Meat")
+        print("3 - Berry")
 
+        food_choice = int(input("Choose food: "))
+        if food_choice == 1:
+            crit.Feed(5)
+        elif food_choice == 2:
+            crit.Feed(3)
+        elif food_choice == 3:
+            crit.Feed(1)
+    
     if num == 3:
         crit.Play()
