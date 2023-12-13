@@ -62,7 +62,7 @@ class Deck(Hand):
 				else:  # self.card가 거짓일 때 (값이 존재하지 않거나 비어있는 상태) -> Out of cards! 출력
 					print("Out of cards!")
 
-#####################################################
+######################################################################################
 
 class Player:
 	""" A player for a game. """
@@ -88,7 +88,7 @@ def ask_number(question, low, high):
 		response = int(input(question))
 	return response
 
-#####################################################
+######################################################################################
 
 class Positionable_Card(Card):
 	""" A Blackjack Card. """
@@ -97,17 +97,17 @@ class Positionable_Card(Card):
 	@property
 	def value(self):
 		if self.is_face_up:
-			v = Card.RANKS.index(self.rank) + 1
+			v = Positionable_Card .RANKS.index(self.rank) + 1
 			if v > 10:
 				v = 10
 			return v
 
-class Deck(Deck):
+class BJ_Deck(Deck):
 	""" A Blackjack Deck. """
 	def populate(self):
-		for suit in Card.SUITS:
-			for rank in Card.RANKS:
-				self.cards.append(Card(rank, suit))
+		for suit in Positionable_Card.SUITS:
+			for rank in Positionable_Card.RANKS:
+				self.cards.append(Positionable_Card(rank, suit))
 	
 	def shuffle(self):
 		import random
@@ -122,10 +122,10 @@ class Deck(Deck):
 				else:  # self.card가 거짓일 때 (값이 존재하지 않거나 비어있는 상태) -> Out of cards! 출력
 					print("Out of cards!")
 
-class Hand(Hand):
+class BJ_Hand(Hand):
 	""" A Blackjack Hand. """
 	def __init__(self, name):
-		super(Hand, self).__init__()
+		super(BJ_Hand, self).__init__()
 		self.name = name
 	
 	def __str__(self):
@@ -147,7 +147,7 @@ class Hand(Hand):
 		# determine if hand contains an Ace
 		contains_ace = False
 		for card in self.cards:
-			if card.value == Card.ACE_VALUE:
+			if card.value == Positionable_Card.ACE_VALUE:
 				contains_ace = True
 		
 		# if total is low, treat Ace = 11
@@ -158,7 +158,7 @@ class Hand(Hand):
 	def is_busted(self):
 		return self.total is not None and self.total > 21
 
-class Player(Hand):
+class BJ_Player(BJ_Hand):
 	def is_hitting(self):
 		response = ask_yes_no("\n" + self.name + ", do you want a hit? (Y/N): ")
 		return response == "y"
@@ -176,7 +176,7 @@ class Player(Hand):
 	def push(self):
 		print("self.name", "pushes.")
 
-class Dealer(Hand):
+class BJ_Dealer(BJ_Hand):
 	""" A Blackjack Dealer. """
 	def is_hitting(self):
 		return self.total is not None and self.total < 17
@@ -194,12 +194,12 @@ class BJ_Game:
 	def __init__(self, names):
 		self.players = []
 		for name in names:
-			player = Player(name)
+			player = BJ_Player(name)
 			self.players.append(player)
 
-			self.dealer = Dealer("Dealer")
+			self.dealer = BJ_Dealer("Dealer")
 
-			self.deck = Deck()
+			self.deck = BJ_Deck()
 			self.deck.populate()
 			self.deck.shuffle()
 
