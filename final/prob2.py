@@ -90,24 +90,24 @@ def ask_number(question, low, high):
 
 #####################################################
 
-class BJ_Card(cards.Card):
+class Positionable_Card(Card):
 	""" A Blackjack Card. """
 	ACE_VALUE = 1
 
 	@property
 	def value(self):
 		if self.is_face_up:
-			v = BJ_Card.RANKS.index(self.rank) + 1
+			v = Card.RANKS.index(self.rank) + 1
 			if v > 10:
 				v = 10
 			return v
 
-class BJ_Deck(cards.Deck):
+class Deck(Deck):
 	""" A Blackjack Deck. """
 	def populate(self):
-		for suit in BJ_Card.SUITS:
-			for rank in BJ_Card.RANKS:
-				self.cards.append(BJ_Card(rank, suit))
+		for suit in Card.SUITS:
+			for rank in Card.RANKS:
+				self.cards.append(Card(rank, suit))
 	
 	def shuffle(self):
 		import random
@@ -122,10 +122,10 @@ class BJ_Deck(cards.Deck):
 				else:  # self.card가 거짓일 때 (값이 존재하지 않거나 비어있는 상태) -> Out of cards! 출력
 					print("Out of cards!")
 
-class BJ_Hand(cards.Hand):
+class Hand(Hand):
 	""" A Blackjack Hand. """
 	def __init__(self, name):
-		super(BJ_Hand, self).__init__()
+		super(Hand, self).__init__()
 		self.name = name
 	
 	def __str__(self):
@@ -147,7 +147,7 @@ class BJ_Hand(cards.Hand):
 		# determine if hand contains an Ace
 		contains_ace = False
 		for card in self.cards:
-			if card.value == BJ_Card.ACE_VALUE:
+			if card.value == Card.ACE_VALUE:
 				contains_ace = True
 		
 		# if total is low, treat Ace = 11
@@ -158,9 +158,9 @@ class BJ_Hand(cards.Hand):
 	def is_busted(self):
 		return self.total is not None and self.total > 21
 
-class BJ_Player(BJ_Hand):
+class Player(Hand):
 	def is_hitting(self):
-		response = games.ask_yes_no("\n" + self.name + ", do you want a hit? (Y/N): ")
+		response = ask_yes_no("\n" + self.name + ", do you want a hit? (Y/N): ")
 		return response == "y"
 	
 	def bust(self):
@@ -176,7 +176,7 @@ class BJ_Player(BJ_Hand):
 	def push(self):
 		print("self.name", "pushes.")
 
-class BJ_Dealer(BJ_Hand):
+class Dealer(Hand):
 	""" A Blackjack Dealer. """
 	def is_hitting(self):
 		return self.total is not None and self.total < 17
@@ -194,12 +194,12 @@ class BJ_Game:
 	def __init__(self, names):
 		self.players = []
 		for name in names:
-			player = BJ_Player(name)
+			player = Player(name)
 			self.players.append(player)
 
-			self.dealer = BJ_Dealer("Dealer")
+			self.dealer = Dealer("Dealer")
 
-			self.deck = BJ_Deck()
+			self.deck = Deck()
 			self.deck.populate()
 			self.deck.shuffle()
 
@@ -260,7 +260,7 @@ def main():
 	print("\t\tWelcome to Blackjack!\n")
 
 	names = []
-	number = games.ask_number("How many players?,\“ (1 - 7): ", low = 1, high = 8)
+	number = ask_number("How many players?,\“ (1 - 7): ", low = 1, high = 8)
 	
 	for i in range(number):
 		name = input("Enter player name: ")
@@ -272,7 +272,7 @@ def main():
 	again = None
 	while again != "n":
 		game.play()
-		again=games.ask_yes_no("\nWant to play again?:")
+		again = ask_yes_no("\nWant to play again?:")
 
 if __name__ == "__main__":
 	main()
