@@ -256,16 +256,25 @@ class BJ_Game:
 				player.clear()
 			self.dealer.clear()
 
+class Chip:
+	def __init__(self, type, amount = 1):
+		self.type = 'dollar'
+
 def main():
 	print("\t\tWelcome to Blackjack!\n")
 
 	names = []
-	number = ask_number("How many players?,\“ (1 - 7): ", low = 1, high = 8)
+	number = ask_number("How many players? (1 - 7): ", low = 1, high = 8)
+	bats = []
 	
 	for i in range(number):
 		name = input("Enter player name: ")
 		names.append(name)
 	print()
+
+	for i in range(number):
+		bat = input("\n" + names[i] + ", How much will you bat($)? : ")
+		bats.append(bat)
 
 	game = BJ_Game(names)
 
